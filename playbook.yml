@@ -1,5 +1,5 @@
 ---
-- name: Provision VM and set up Docker host
+- name: Provision and set up docker
   hosts: all
   become: true
   tasks:
