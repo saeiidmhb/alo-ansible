@@ -75,3 +75,29 @@
         name: docker
         enabled: yes
 
+    - name: Configure Docker daemon file
+      copy:
+        dest: /etc/docker/daemon.json
+        content: |
+          {
+            "log-driver": "json-file",
+            "log-opts": {
+              "max-size": "10m",
+              "max-file": "3"
+            },
+            "storage-driver": "overlay2",
+            "storage-opts": [
+              "overlay2.override_kernel_check=true"
+            ]
+          }
+
+    - name: Reload Docker daemon
+      command: systemctl daemon-reload
+      notify:
+        - Restart Docker
+
+  handlers:
+    - name: Restart Docker
+      service:
+        name: docker
+        state: restarted
