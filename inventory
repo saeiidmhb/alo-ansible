@@ -1,8 +1,9 @@
 [dockerhost]
-vm-server ansible_host=127.0.0.1 ansible_port=222
+vm-server ansible_host=192.168.39.128 ansible_port=22
 
 [dockerhost:vars]
-ansible_user=ubuntu
+ansible_user=alo
 ansible_pass=qazwsx
-ansible_sudo_pass=ubuntu
+ansible_ssh_pass=qazwsx
+ansible_become_pass=qazwsx
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
